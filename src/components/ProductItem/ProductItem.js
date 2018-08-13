@@ -9,15 +9,26 @@ class ProductItem extends Component {
         }
     }
 
+   
+
     render() {
+        const contentTable  = {
+            textAlign: 'center',
+            flex: 1,
+            justifyContent: 'center',
+            justifyItems: 'center'
+        };
+
         var { product, index } = this.props;
         var statusName = product.status ? 'Còn Hàng' : 'Hết Hàng';
         var statusClass = product.status ? 'warning' : 'default';
         return (
-            <tr>
+            <tr style={contentTable}>
                 <td>{index + 1}</td>
-                <td>{product.id}</td>
                 <td>{product.name}</td>
+                <td>
+                    <img alt="" src={`${product.image}`} style={{width: 100, height: 100}}/>
+                </td>             
                 <td>{product.price}</td>
                 <td>
                     <span className={`label label-${statusClass}`}>

@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import { actAddProductRequest, actGetProductRequest, actUpdateProductRequest } from './../../actions/index';
 import { connect } from 'react-redux';
 
+
 class ProductActionPage extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             id: '',
+            txtImage:'',
             txtName: '',
             txtPrice: '',
             chkbStatus: ''
@@ -29,6 +31,7 @@ class ProductActionPage extends Component {
             this.setState({
                 id : itemEditing.id,
                 txtName : itemEditing.name,
+                txtImage: itemEditing.image,
                 txtPrice : itemEditing.price,
                 chkbStatus : itemEditing.status
             });
@@ -36,9 +39,11 @@ class ProductActionPage extends Component {
     }
 
     onChange = (e) => {
-        var target = e.target;
+        var target = e.target;    
         var name = target.name;
         var value = target.type === 'checkbox' ? target.checked : target.value;
+        if (name === 'txtImage') {value = "image/" + target.files[0].name}
+       
         this.setState({
             [name]: value
         });
@@ -46,14 +51,16 @@ class ProductActionPage extends Component {
 
     onSave = (e) => {
         e.preventDefault();
-        var { id, txtName, txtPrice, chkbStatus } = this.state;
+        var { id, txtImage, txtName, txtPrice, chkbStatus } = this.state;
         var { history } = this.props;
         var product = {
             id : id,
             name : txtName,
+            image: txtImage,
             price : txtPrice,
             status : chkbStatus
         };
+
         if (id) {
             this.props.onUpdateProduct(product);
         } else {
@@ -63,7 +70,8 @@ class ProductActionPage extends Component {
     }
 
     render() {
-        var { txtName, txtPrice, chkbStatus } = this.state;
+        var { txtName, txtImage, txtPrice, chkbStatus } = this.state;
+        txtImage = "../../" + txtImage;
         return (
             <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <form onSubmit={this.onSave}>
@@ -76,6 +84,18 @@ class ProductActionPage extends Component {
                             value={txtName}
                             onChange={this.onChange}
                         />
+                    </div>
+                    <div className="form-group">
+                        <label>Ảnh Sản Phẩm: </label>
+                        
+                        <input
+                            type="file"
+                            accept=".png, .jpg, .jpeg" 
+                            className="form-control"
+                            name="txtImage"                                              
+                            onChange={this.onChange}
+                        />
+                       <img className = "img-responsive" alt="" src={`${txtImage}`} style={{width: 80, height: 120}}/>
                     </div>
                     <div className="form-group">
                         <label>Giá: </label>

@@ -12,8 +12,8 @@ class ProductList extends Component {
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Mã</th>
                                 <th>Tên</th>
+                                <th>Hình ảnh</th>
                                 <th>Giá</th>
                                 <th>Trạng Thái</th>
                                 <th>Hành Động</th>
