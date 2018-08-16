@@ -3,6 +3,7 @@ import HomePage from './pages/HomePage/HomePage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ProductListPage from './pages/ProductListPage/ProductListPage';
 import ProductActionPage from './pages/ProductActionPage/ProductActionPage';
+import BrandListPage from './pages/BrandListPage/BrandListPage';
 
 const routes = [
     {
@@ -14,6 +15,11 @@ const routes = [
         path: '/product-list',
         exact: false,
         main: () => <ProductListPage />
+    },
+    {
+        path: '/brand-list',
+        exact: false,
+        main: () => <BrandListPage />
     },
     {
         path: '/product/add',

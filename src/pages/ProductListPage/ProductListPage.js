@@ -50,7 +50,8 @@ class ProductListPage extends Component {
 
 const mapStateToProps = state => {
     return {
-        products: state.products
+        products: state.products,
+        brands: state.brands
     }
 }
 

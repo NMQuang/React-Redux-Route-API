@@ -9,7 +9,16 @@ class ProductItem extends Component {
         }
     }
 
-   
+    showRatings = (rating) => {
+        var result = [];
+        for(var i = 1;i <= rating;i++){
+            result.push(<i key={i} className="fa fa-star" style={{color: "#CFE535"}}></i>);
+        }
+        for(var j = 1; j <= ( 5-rating);j++){
+            result.push(<i key={i + j} className="fa fa-star-o"></i>);
+        }
+        return result;
+    }
 
     render() {
         const contentTable  = {
@@ -30,6 +39,7 @@ class ProductItem extends Component {
                     <img alt="" src={`${product.image}`} style={{width: 100, height: 100}}/>
                 </td>             
                 <td>{product.price}</td>
+                <td>{this.showRatings(product.rate)}</td>
                 <td>
                     <span className={`label label-${statusClass}`}>
                         {statusName}
@@ -53,6 +63,7 @@ class ProductItem extends Component {
             </tr>
         );
     }
+
 }
 
 export default ProductItem;

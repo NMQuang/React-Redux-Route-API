@@ -3,18 +3,22 @@ import './App.css';
 import Menu from './components/Menu/Menu';
 import routes from './routes';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import Header from './components/Layout/Header';
+import Footer from './components/Layout/Footer';
 
 class App extends Component {
     render() {
         return (
             <Router>
                 <div>
+                    <Header/>
                     <Menu />
                     <div className="container">
                         <div className="row">
                             {this.showContentMenus(routes)}
                         </div>
                     </div>
+                    <Footer/>
                 </div>
             </Router>
         );

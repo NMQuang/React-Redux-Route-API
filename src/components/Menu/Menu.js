@@ -8,8 +8,13 @@ const menus = [
         exact: true
     },
     {
-        name: 'Quản Lý Sản Phẩm',
+        name: 'Sản Phẩm',
         to: '/product-list',
+        exact: false
+    },
+    {
+        name: 'Hiệu Sản Phẩm',
+        to: '/brand-list',
         exact: false
     }
 ];
@@ -20,12 +25,14 @@ const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
             path={to}
             exact={activeOnlyWhenExact}
             children={({ match }) => {
-                var active = match ? 'active' : '';
+                var active = match ? 'nav-item active' : 'nav-item';
                 return (
                     <li className={active}>
-                        <Link to={to}>
-                            {label}
-                        </Link>
+                        <a class="nav-link" href="#">
+                            <Link to={to}>
+                                {label}
+                            </Link>
+                        </a>
                     </li>
                 );
             }}
@@ -36,12 +43,23 @@ const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
 class Menu extends Component {
     render() {
         return (
-            <div className="navbar navbar-default">
-                <a className="navbar-brand">CALL API</a>
-                <ul className="nav navbar-nav">
+            <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <a className="navbar-brand" href="#">React Redux API</a>
+                    <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                     {this.showMenus(menus)}
-                </ul>
-            </div>
+                    </ul>
+                    <form className="form-inline my-2 my-lg-0">
+                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <button className="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            
+            // <div className="navbar navbar-default">
+            //     <a className="navbar-brand">CALL API</a>
+            //     <ul className="nav navbar-nav">
+            //         {this.showMenus(menus)}
+            //     </ul>
+            // </div>
         );
     }
 

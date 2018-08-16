@@ -13,6 +13,7 @@ class ProductActionPage extends Component {
             txtImage:'',
             txtName: '',
             txtPrice: '',
+            txtRate:'',
             chkbStatus: ''
         };
     }
@@ -33,6 +34,7 @@ class ProductActionPage extends Component {
                 txtName : itemEditing.name,
                 txtImage: itemEditing.image,
                 txtPrice : itemEditing.price,
+                txtRate : itemEditing.rate,
                 chkbStatus : itemEditing.status
             });
         }
@@ -42,7 +44,9 @@ class ProductActionPage extends Component {
         var target = e.target;    
         var name = target.name;
         var value = target.type === 'checkbox' ? target.checked : target.value;
-        if (name === 'txtImage') {value = "image/" + target.files[0].name}
+        if (name === 'txtImage') {
+            value = "image/" + target.files[0].name
+        }
        
         this.setState({
             [name]: value
@@ -51,13 +55,14 @@ class ProductActionPage extends Component {
 
     onSave = (e) => {
         e.preventDefault();
-        var { id, txtImage, txtName, txtPrice, chkbStatus } = this.state;
+        var { id, txtImage, txtName, txtPrice, txtRate, chkbStatus } = this.state;
         var { history } = this.props;
         var product = {
             id : id,
             name : txtName,
             image: txtImage,
             price : txtPrice,
+            rate: txtRate,
             status : chkbStatus
         };
 
@@ -70,7 +75,7 @@ class ProductActionPage extends Component {
     }
 
     render() {
-        var { txtName, txtImage, txtPrice, chkbStatus } = this.state;
+        var { txtName, txtImage, txtPrice, txtRate, chkbStatus } = this.state;
         txtImage = "../../" + txtImage;
         return (
             <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -104,6 +109,16 @@ class ProductActionPage extends Component {
                             className="form-control"
                             name="txtPrice"
                             value={txtPrice}
+                            onChange={this.onChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Chất lượng: </label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            name="txtRate"
+                            value={txtRate}
                             onChange={this.onChange}
                         />
                     </div>
